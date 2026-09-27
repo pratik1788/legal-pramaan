@@ -5,4 +5,5 @@
 set -e
 echo "Applying database schema..."
 node ./node_modules/prisma/build/index.js db push --accept-data-loss --skip-generate
+echo "Database schema is up to date."
 exec "$@"

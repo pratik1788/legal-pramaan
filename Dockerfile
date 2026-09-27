@@ -33,7 +33,14 @@ COPY --from=builder /app/node_modules/.prisma ./node_modules/.prisma
 COPY --from=builder /app/node_modules/@prisma ./node_modules/@prisma
 COPY --from=builder /app/node_modules/prisma ./node_modules/prisma
 COPY docker-entrypoint.sh ./docker-entrypoint.sh
-RUN chmod +x ./docker-entrypoint.sh && mkdir -p ./uploads && chown nextjs:nodejs ./uploads
+# Pre-warm the Prisma schema-engine cache: `db push` runs at container boot as
+# the non-root `nextjs` user, which cannot populate the engine cache on first
+# use. `migrate diff` exercises the engine download without needing a database.
+ENV XDG_CACHE_HOME=/app/.cache
+RUN mkdir -p /app/.cache /app/uploads && \
+    node ./node_modules/prisma/build/index.js migrate diff --from-empty --to-schema-datamodel ./prisma/schema.prisma --script > /dev/null && \
+    chmod +x ./docker-entrypoint.sh && \
+    chown -R nextjs:nodejs /app/.cache ./uploads ./docker-entrypoint.sh
 
 USER nextjs
 EXPOSE 3000
