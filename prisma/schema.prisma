@@ -51,3 +51,27 @@ enum OrderStatus {
   delivered
   cancelled
 }
+
+// Change requests posted by the (non-technical) business team via /team.
+// They describe in plain language how a feature should work; the builder
+// (Ziggy) picks them up and implements them.
+model ChangeRequest {
+  id          String              @id @default(cuid())
+  title       String
+  description String
+  authorName  String              @default("")
+  status      ChangeRequestStatus @default(NEW)
+  adminNote   String              @default("")
+  createdAt   DateTime            @default(now())
+  updatedAt   DateTime            @updatedAt
+
+  @@index([status])
+  @@index([createdAt])
+}
+
+enum ChangeRequestStatus {
+  NEW
+  IN_PROGRESS
+  DONE
+  DECLINED
+}
