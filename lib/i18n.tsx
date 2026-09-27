@@ -25,10 +25,10 @@ const dict = {
     "nav.track": "Track Order",
     "nav.start": "Start Agreement",
 
-    "hero.badge": "Made for Gujarat · Gujarat Stamp Act compliant",
-    "hero.title": "Legal documents online, made for Gujarat",
+    "hero.badge": "Affidavits & legal documents · Starting in Gujarat",
+    "hero.title": "Sworn affidavits and legal documents, online",
     "hero.subtitle":
-      "Create a valid rent agreement in minutes — drafted in English, with correct Gujarat stamp duty calculated automatically. No queues, no middlemen.",
+      "Create valid affidavits and rent agreements in minutes — drafted in English, with correct stamp duty calculated automatically. No queues, no middlemen.",
     "hero.cta1": "Create Rent Agreement",
     "hero.cta2": "See pricing",
     "hero.stat1n": "20+",
@@ -49,7 +49,7 @@ const dict = {
     "trust.4d": "Service fee + stamp duty shown separately before you pay.",
 
     "services.title": "Services",
-    "services.subtitle": "Start with rent agreements — more Gujarat services on the way.",
+    "services.subtitle": "Rent agreements and affidavits today — more services on the way.",
     "services.rent.t": "Rent Agreement",
     "services.rent.d":
       "Guided builder for leave & licence / rent agreements. 20-clause deed in English, Gujarat stamp duty auto-calculated, PDF download.",
@@ -106,7 +106,7 @@ const dict = {
     "faq.a6":
       "No. We are a document-preparation platform, not a law firm, and nothing here is legal advice. For disputes or complex matters, please consult an advocate.",
 
-    "footer.tag": "Online legal documentation for Gujarat.",
+    "footer.tag": "Online legal documentation for India. Starting with Gujarat.",
     "footer.disclaimer":
       "We are not a law firm and do not provide legal advice. Documents are prepared from information you provide.",
     "footer.terms": "Terms of Service",

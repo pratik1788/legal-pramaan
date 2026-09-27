@@ -1,8 +1,8 @@
 {
-  "name": "gujarat-legal-platform",
+  "name": "legal-pramaan",
   "version": "0.1.0",
   "private": true,
-  "description": "Gujarat-first online legal documentation platform (MVP): guided document builder, Gujarat stamp-duty engine, checkout, admin.",
+  "description": "Legal Pramaan — online legal documentation platform for India (MVP): guided document builder, stamp-duty engine, checkout, admin. Launching in Gujarat.",
   "scripts": {
     "dev": "next dev",
     "build": "prisma generate && next build",

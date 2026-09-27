@@ -4,9 +4,9 @@ import { Header, Footer } from "@/components/chrome";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "GujaratLegal — Online Legal Documentation for Gujarat",
+  title: "Legal Pramaan — Sworn Affidavits & Legal Documents Online",
   description:
-    "Create valid rent agreements online for Gujarat. Guided builder in English with correct Gujarat Stamp Act stamp-duty calculation.",
+    "Create valid affidavits and rent agreements online for India. Guided builder in English with correct stamp-duty calculation. Starting in Gujarat.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

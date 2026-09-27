@@ -14,10 +14,10 @@ export function Header() {
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
         <Link href="/" className="flex items-center gap-2">
           <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-brand-600 text-lg font-bold text-white">
-            GL
+            LP
           </span>
           <span className="font-bold text-slate-900">
-            Gujarat<span className="text-brand-600">Legal</span>
+            Legal <span className="text-brand-600">Pramaan</span>
           </span>
         </Link>
         <nav className="hidden items-center gap-5 text-sm font-medium text-slate-600 md:flex">
@@ -44,7 +44,7 @@ export function Footer() {
         <div className="grid gap-8 md:grid-cols-3">
           <div>
             <p className="font-bold text-slate-900">
-              Gujarat<span className="text-brand-600">Legal</span>
+              Legal <span className="text-brand-600">Pramaan</span>
             </p>
             <p className="mt-2 text-sm text-slate-600">{t("footer.tag")}</p>
           </div>
@@ -58,7 +58,7 @@ export function Footer() {
           </div>
         </div>
         <p className="mt-8 text-center text-xs text-slate-400">
-          © {new Date().getFullYear()} GujaratLegal · {t("footer.rights")}
+          © {new Date().getFullYear()} Legal Pramaan · {t("footer.rights")}
         </p>
       </div>
     </footer>

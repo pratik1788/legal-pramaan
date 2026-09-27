@@ -1,4 +1,4 @@
-# GujaratLegal — Gujarat-first legal document platform (production build)
+# Legal Pramaan — online legal documentation for India (production build)
 
 Online rent-agreement pipeline for Gujarat: **wizard → exact stamp-duty quote (Article 30A, Gujarat Stamp Act 1958) → Razorpay payment → PDF agreement (English; Gujarati planned for Phase 2) → order tracking → admin fulfilment dashboard.**
 
@@ -9,7 +9,7 @@ Stack: **Next.js 14 (App Router) + TypeScript + Tailwind**, **Prisma** (PostgreS
 ## 1. Quick start (local dev)
 
 ```bash
-cd gujarat-legal-platform
+cd legal-pramaan
 cp .env.example .env
 # .env already points at SQLite (file:./dev.db). Set a strong ADMIN_PASSWORD and ADMIN_SESSION_SECRET.
 npm install
