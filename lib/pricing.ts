@@ -11,7 +11,7 @@ function envInt(name: string, fallback: number): number {
 
 export const PRICING = {
   /** Service fee for a rent-agreement order (excludes stamp duty). */
-  rentAgreementServiceFeePaise: () => envInt("SERVICE_FEE_RENT_AGREEMENT_PAISA", 19900),
+  rentAgreementServiceFeePaise: () => envInt("SERVICE_FEE_RENT_AGREEMENT_PAISA", 29900),
   /** Optional add-ons */
   esignPaise: () => envInt("ADDON_ESIGN_PAISA", 3900),
   notaryPaise: () => envInt("ADDON_NOTARY_PAISA", 7000),
