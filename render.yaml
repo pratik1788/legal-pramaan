@@ -1,0 +1,41 @@
+# Render Blueprint — GujaratLegal production deploy
+# Push this repo to GitHub, then in Render: New > Blueprint > select the repo.
+# Render provisions the web service + PostgreSQL and wires DATABASE_URL automatically.
+services:
+  - type: web
+    name: gujarat-legal
+    runtime: docker
+    plan: starter
+    healthCheckPath: /
+    disk:
+      name: uploads
+      mountPath: /app/uploads
+      sizeGB: 1
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: gujarat-legal-db
+          property: connectionString
+      - key: ADMIN_PASSWORD
+        generateValue: true
+      - key: ADMIN_SESSION_SECRET
+        generateValue: true
+      - key: NEXT_PUBLIC_APP_URL
+        sync: false # set after first deploy, e.g. https://gujarat-legal.onrender.com
+      - key: RAZORPAY_KEY_ID
+        sync: false # test keys to start; production keys before launch
+      - key: RAZORPAY_KEY_SECRET
+        sync: false
+      - key: NEXT_PUBLIC_RAZORPAY_KEY_ID
+        sync: false
+      - key: SERVICE_FEE_RENT_AGREEMENT_PAISA
+        value: 19900
+      - key: ADDON_ESIGN_PAISA
+        value: 3900
+      - key: ADDON_NOTARY_PAISA
+        value: 7000
+
+databases:
+  - name: gujarat-legal-db
+    plan: starter
+    postgresMajorVersion: 16

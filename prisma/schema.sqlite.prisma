@@ -1,0 +1,46 @@
+// Prisma schema — SQLite variant for local development.
+// Usage: npm run db:sqlite
+// Identical to schema.prisma except for the provider.
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Order {
+  id               String      @id @default(cuid())
+  serviceType      String      @default("rent_agreement")
+  status           OrderStatus @default(draft)
+  customerName     String
+  customerPhone    String
+  customerEmail    String?
+  payload          Json
+  serviceFeePaise  Int
+  stampDutyPaise   Int
+  addonsPaise      Int         @default(0)
+  totalPaise       Int
+  currency         String      @default("INR")
+  razorpayOrderId  String?
+  razorpayPaymentId String?
+  stampedPdfPath   String?
+  trackingNote     String?
+  adminNote        String?
+  paidAt           DateTime?
+  createdAt        DateTime    @default(now())
+  updatedAt        DateTime    @updatedAt
+
+  @@index([status])
+  @@index([customerPhone])
+}
+
+enum OrderStatus {
+  draft
+  paid
+  in_review
+  stamped
+  delivered
+  cancelled
+}
