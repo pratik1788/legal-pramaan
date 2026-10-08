@@ -16,13 +16,14 @@ const NEXT: Record<string, string[]> = {
 interface FullOrder {
   id: string;
   status: string;
+  serviceType: string;
   customerName: string;
   customerPhone: string;
   customerEmail?: string | null;
   payload: {
     data: Record<string, unknown>;
     addons: { esign: boolean; notary: boolean };
-    dutyBreakdown: Record<string, string>;
+    dutyBreakdown?: Record<string, string>;
   };
   serviceFeePaise: number;
   stampDutyPaise: number;
@@ -135,7 +136,19 @@ export default function AdminOrderDetail({ params }: { params: { id: string } })
           <p className="font-mono text-xs text-slate-600">rzp payment: {order.razorpayPaymentId ?? "—"}</p>
         </div>
         <div className="card">
-          <p className="font-semibold">Agreement data</p>
+          <p className="font-semibold">
+            {order.serviceType === "affidavit" ? "Affidavit data" : "Agreement data"}
+          </p>
+          {order.serviceType === "affidavit" ? (
+            <dl className="mt-2 space-y-1 text-sm">
+              <div className="flex justify-between gap-2"><dt className="text-slate-500">Type</dt><dd className="text-right">{String(d.affidavitType ?? "")}</dd></div>
+              <div className="flex justify-between gap-2"><dt className="text-slate-500">Deponent</dt><dd className="text-right">{String(d.affiantName ?? "")}</dd></div>
+              <div className="flex justify-between gap-2"><dt className="text-slate-500">Place / Date</dt><dd className="text-right">{String(d.place ?? "")} · {String(d.date ?? "")}</dd></div>
+              <div className="flex justify-between gap-2"><dt className="text-slate-500">Paragraphs</dt><dd className="text-right">{Array.isArray(d.declarations) ? d.declarations.length : 0}</dd></div>
+              <div className="flex justify-between gap-2"><dt className="text-slate-500">Language</dt><dd>English (v1)</dd></div>
+              <div className="flex justify-between gap-2"><dt className="text-slate-500">Add-ons</dt><dd>{[order.payload.addons.esign && "e-sign", order.payload.addons.notary && "notary"].filter(Boolean).join(", ") || "—"}</dd></div>
+            </dl>
+          ) : (
           <dl className="mt-2 space-y-1 text-sm">
             <div className="flex justify-between gap-2"><dt className="text-slate-500">Owner</dt><dd className="text-right">{String(d.ownerName ?? "")}</dd></div>
             <div className="flex justify-between gap-2"><dt className="text-slate-500">Tenant</dt><dd className="text-right">{String(d.tenantName ?? "")}</dd></div>
@@ -145,7 +158,10 @@ export default function AdminOrderDetail({ params }: { params: { id: string } })
             <div className="flex justify-between gap-2"><dt className="text-slate-500">Language</dt><dd>English (v1)</dd></div>
             <div className="flex justify-between gap-2"><dt className="text-slate-500">Add-ons</dt><dd>{[order.payload.addons.esign && "e-sign", order.payload.addons.notary && "notary"].filter(Boolean).join(", ") || "—"}</dd></div>
           </dl>
-          <p className="mt-2 text-xs text-slate-500">{order.payload.dutyBreakdown?.en}</p>
+          )}
+          {order.payload.dutyBreakdown?.en && (
+            <p className="mt-2 text-xs text-slate-500">{order.payload.dutyBreakdown.en}</p>
+          )}
           <a href={`/api/pdf/${order.id}`} className="btn-secondary mt-3 text-sm">
             Download generated PDF
           </a>

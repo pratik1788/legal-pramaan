@@ -16,7 +16,13 @@ export default function HomePage() {
       cta: t("services.rent.cta"),
       href: "/rent-agreement",
     },
-    { live: false, title: t("services.aff.t"), desc: t("services.aff.d") },
+    {
+      live: true,
+      title: t("services.aff.t"),
+      desc: t("services.aff.d"),
+      cta: t("services.rent.cta"),
+      href: "/affidavit",
+    },
     { live: false, title: t("services.estamp.t"), desc: t("services.estamp.d") },
     { live: false, title: t("services.notice.t"), desc: t("services.notice.d") },
   ];
@@ -139,10 +145,22 @@ export default function HomePage() {
                 {t("pricing.rent.cta")}
               </Link>
             </div>
-            {[
-              [t("pricing.aff.t"), t("pricing.aff.note")],
-              [t("pricing.notice.t"), t("pricing.notice.note")],
-            ].map(([title, note], i) => (
+            <div className="card">
+              <p className="font-semibold text-slate-900">{t("pricing.aff.t")}</p>
+              <p className="mt-2 text-3xl font-extrabold text-brand-600">
+                {formatINR(PRICING.affidavitServiceFeePaise())}
+              </p>
+              <ul className="mt-4 space-y-2 text-sm text-slate-600">
+                {[1, 2, 3, 4].map((n) => (
+                  <li key={n}>✓ {t(`pricing.aff.f${n}` as never)}</li>
+                ))}
+              </ul>
+              <p className="mt-3 text-xs text-slate-500">{t("pricing.aff.note")}</p>
+              <Link href="/affidavit" className="btn-primary mt-4 w-full">
+                {t("pricing.aff.cta")}
+              </Link>
+            </div>
+            {[[t("pricing.notice.t"), t("pricing.notice.note")]].map(([title, note], i) => (
               <div key={i} className="card opacity-70">
                 <p className="font-semibold text-slate-900">{title}</p>
                 <p className="mt-2 text-3xl font-extrabold text-slate-400">—</p>
